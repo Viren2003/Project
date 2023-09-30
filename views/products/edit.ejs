@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit products</title>
+    <style>
+        input {
+            margin: 12px;
+            border: 2px solid black;
+        }
+
+        form {
+
+            display: inline-block;
+            margin: auto;
+            padding: 12px 13px;
+            border: 2px solid lightcoral;
+        }
+
+        button {
+            padding: 4px;
+            border: 2px solid black;
+            background-color: aqua;
+            border-radius: 3px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Edit Your Products here...</h1>
+    <form action="/products/<%=product._id %>?_method=PUT" method="post">
+        <label for="name">Product Name:</label>
+        <input type="text" name='name' id='name' placeholder="Enter product name" value="<%=product.name%>">
+        <br>
+        <label for="price">Enter price:</label>
+        <input type="number" name='price' id='price' value="<%=product.price%>">
+        <br>
+        <label for="category">Select Category of product:</label>
+        <select name="category" id="category">
+            <!-- <option value="dairy">Dairy</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="fruit">Fruit</option> -->
+            <% for(let category of categories){%>
+                <option value="<%=category %>" <%=product.category===category ? 'selected' : ' ' %>> <%=category%>
+                </option>
+                <% } %>
+        </select>
+        <br>
+        <button>Submit</button>
+    </form>
+    <a href="/products/<%=product._id%>">Cancel</a>
+</body>
+
+</html>
